@@ -1,0 +1,74 @@
+<!doctype html>
+<!--
+  Pesquisa de Filmes — front-end
+  API usada : iTunes Search API (Apple) — https://performance-partners.apple.com/search-api
+  Linguagem : HTML5 + CSS3 + JavaScript (ES2020, sem frameworks nem build)
+-->
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pesquisa de Filmes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topo">
+    <h1>🎬 Pesquisa de Filmes</h1>
+    <p class="sub">Dados obtidos em tempo real da iTunes Search API</p>
+  </header>
+
+  <main>
+    <form id="form-pesquisa" class="pesquisa" autocomplete="off">
+      <input id="termo" type="search" placeholder="Título, realizador ou palavra-chave (ex.: Matrix)" required minlength="2" aria-label="Termo de pesquisa">
+      <select id="pais" aria-label="Loja / país">
+        <option value="pt" selected>Portugal</option>
+        <option value="br">Brasil</option>
+        <option value="us">EUA</option>
+        <option value="gb">Reino Unido</option>
+      </select>
+      <button type="submit">Pesquisar</button>
+    </form>
+
+    <section id="filtros" class="filtros" hidden>
+      <label>Género
+        <select id="f-genero"><option value="">Todos</option></select>
+      </label>
+      <label>Ano de
+        <input id="f-ano-min" type="number" min="1900" max="2100" placeholder="1900">
+      </label>
+      <label>até
+        <input id="f-ano-max" type="number" min="1900" max="2100" placeholder="2026">
+      </label>
+      <label>Classificação
+        <select id="f-classificacao"><option value="">Todas</option></select>
+      </label>
+      <label>Filtrar texto
+        <input id="f-texto" type="search" placeholder="nos resultados…">
+      </label>
+      <label>Ordenar
+        <select id="f-ordem">
+          <option value="relevancia">Relevância</option>
+          <option value="recentes">Mais recentes</option>
+          <option value="antigos">Mais antigos</option>
+          <option value="titulo">Título (A–Z)</option>
+          <option value="duracao">Duração</option>
+        </select>
+      </label>
+      <button id="limpar" type="button" class="secundario">Limpar filtros</button>
+    </section>
+
+    <div id="estado" class="estado" role="status" aria-live="polite">
+      Escreva um termo e carregue em <strong>Pesquisar</strong>.
+    </div>
+
+    <ul id="resultados" class="grelha"></ul>
+  </main>
+
+  <dialog id="detalhe">
+    <button class="fechar" aria-label="Fechar">×</button>
+    <div id="detalhe-conteudo"></div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>

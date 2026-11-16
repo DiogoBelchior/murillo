@@ -1,0 +1,54 @@
+:root {
+  --bg: #f5f5f7; --card: #fff; --txt: #1d1d1f; --muted: #6e6e73;
+  --accent: #d6336c; --border: #e0e0e5; --erro-bg: #fdecea; --erro: #b3261e;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #121214; --card: #1e1e22; --txt: #f2f2f5; --muted: #a1a1aa;
+          --border: #33333a; --erro-bg: #3b1715; --erro: #ffb4ab; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+       background: var(--bg); color: var(--txt); }
+.topo { padding: 24px 16px 8px; text-align: center; }
+.topo h1 { margin: 0; font-size: 1.8rem; }
+.sub { margin: 4px 0 0; color: var(--muted); }
+main { max-width: 1100px; margin: 0 auto; padding: 16px; }
+
+.pesquisa { display: flex; gap: 8px; flex-wrap: wrap; }
+.pesquisa input { flex: 1 1 260px; }
+input, select, button { font: inherit; padding: 10px 12px; border-radius: 8px;
+  border: 1px solid var(--border); background: var(--card); color: var(--txt); }
+button { background: var(--accent); color: #fff; border: none; cursor: pointer; font-weight: 600; }
+button:hover { filter: brightness(1.08); }
+button.secundario { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+
+.filtros { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; margin: 16px 0;
+  padding: 12px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; }
+.filtros label { display: flex; flex-direction: column; font-size: .8rem; color: var(--muted); gap: 4px; }
+.filtros input[type=number] { width: 90px; }
+
+.estado { margin: 16px 0; color: var(--muted); }
+.estado.erro { background: var(--erro-bg); color: var(--erro); padding: 12px 16px; border-radius: 8px; }
+.estado.erro button { margin-left: 8px; padding: 4px 10px; }
+
+.grelha { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
+.cartao { background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+  overflow: hidden; cursor: pointer; display: flex; flex-direction: column; transition: transform .15s; }
+.cartao:hover, .cartao:focus-visible { transform: translateY(-3px); outline: 2px solid var(--accent); }
+.cartao img { width: 100%; aspect-ratio: 2/3; object-fit: cover; background: var(--border); color: transparent; }
+.cartao .info { padding: 10px; display: flex; flex-direction: column; gap: 4px; }
+.cartao h3 { margin: 0; font-size: .95rem; line-height: 1.25; }
+.meta { font-size: .8rem; color: var(--muted); }
+.tag { display: inline-block; font-size: .72rem; padding: 2px 8px; border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); align-self: flex-start; }
+
+dialog { max-width: 720px; width: calc(100% - 32px); border: none; border-radius: 14px;
+  padding: 20px; background: var(--card); color: var(--txt); }
+dialog::backdrop { background: rgb(0 0 0 / .6); }
+.fechar { position: absolute; top: 8px; right: 8px; background: transparent; color: var(--txt); font-size: 1.5rem; padding: 0 10px; }
+.detalhe { display: flex; gap: 20px; flex-wrap: wrap; }
+.detalhe img { width: 200px; max-width: 100%; border-radius: 8px; }
+.detalhe .texto { flex: 1 1 280px; }
+.detalhe h2 { margin-top: 0; }
+.detalhe a { color: var(--accent); }
